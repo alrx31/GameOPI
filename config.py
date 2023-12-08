@@ -5,9 +5,20 @@ def word_gen():
 
     words = [line.strip().split('#') for line in lines]
 
-    r = random.randint(0, len(words) - 1)
+    r = get_random(words)
     return words[r]
 
+
+def get_random(a):
+    return random.randint(0,len(a) - 1)
+
+
+def baraban():
+    baraban = []
+    with open("baraban.txt", "r", encoding="utf-8") as file:
+        lines = file.readlines()
+    baraban = [line.strip() for line in lines]
+    return baraban
 
 def result(pl1, pl2, pl3, word):
     max_result = max(
