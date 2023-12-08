@@ -27,9 +27,11 @@ def game():
 
     for i in range(len(res)):
         res[i] = '_'
-
-    while ''.join(res) != word:
+    p = 0
+    # while ''.join(res) != word or p < 2:
+    while p<2:
         print(1)
+        p+=1
     else:
         config.result(
             players['pl1'],
