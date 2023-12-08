@@ -22,13 +22,16 @@ def game():
         players['pl3'],
         "wert"
     )
-    word = config.word_gen()[0]  # слово
+    getting_word = config.word_gen() # получение слова
+    word = getting_word[0]  # слово
+    describe = getting_word[1] # описание слова
     res = list(word)  # массив  - - -
 
     for i in range(len(res)):
         res[i] = '_'
     p = 0
     # while ''.join(res) != word or p < 2:
+    print(describe)
     while p<2:
         print(1)
         p+=1
