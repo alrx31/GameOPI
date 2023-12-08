@@ -36,17 +36,24 @@ def game():
     while ''.join(res) != word:
 
         baraban_value = int(baraban[config.get_random(baraban)])
+
+        
         if baraban_value == -1:
             print("вы пропускаете ход")
             continue
+
         if baraban_value == 0:
+            print("Сектотр + на барабане")
             input_letter_num = int(input("введите номер буквы: "))
             input_letter = word_list[input_letter_num-1]
+
             for i in range(len(res)):
                 if input_letter == word_list[i]:
                     res[i] = word_list[i]
             print(res)
             continue
+
+
         print(baraban_value)
         input_letter = input("Введите букву: ").upper()
         game_flag = 0
