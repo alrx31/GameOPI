@@ -10,19 +10,18 @@ def word_gen():
     return  words[r]
 
 
-def result(pl1,pl2,pl3,word){
+def result(pl1, pl2, pl3, word):
     max_result = max(
-        pl1.count,
-        pl2.count,
-        pl3.count,
+        pl1['count'],
+        pl2['count'],
+        pl3['count'],
     )
 
-    if(max_result == pl1.count):
-        print("The Winner is :" + pl1.name + " with result: " + max_result) 
-    
-    if(max_result == pl2.count):
-        print("The Winner is :" + pl2.name + " with result: " + max_result)
-    
-    if(max_result == pl3.count):
-        print("The Winner is :" + pl3.name + " with result: " + max_result)
-}
+    if max_result == pl1['count']:
+        print("The Winner is :" + pl1['name'] + " with result: " + str(max_result))
+
+    if max_result == pl2['count']:
+        print("The Winner is :" + pl2['name'] + " with result: " + str(max_result))
+
+    if max_result == pl3['count']:
+        print("The Winner is :" + pl3['name'] + " with result: " + str(max_result))

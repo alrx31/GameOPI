@@ -1,35 +1,41 @@
 import config
 
-
 def game():
     players = {
-        "pl1" : {
-            "count": 0,
-            "name": "Player 1",
+        'pl1': {
+            'count': 2,
+            'name': "Player 1",
         },
-        "pl2" : {
-            "count": 0,
-            "name": "Player 2",
+        'pl2': {
+            'count': 3,
+            'name': "Player 2",
         },
-        "pl3" : {
-            "count": 0,
-            "name": "Player 3",
+        'pl3': {
+            'count': 4,
+            'name': "Player 3",
         },
     }
-    
 
+    config.result(
+        players['pl1'],
+        players['pl2'],
+        players['pl3'],
+        "wert"
+    )
+    word = config.word_gen()[0]  # слово
+    res = list(word)  # массив  - - -
 
-    word = config.word_gen()[0] # слово
-    res = word.split('')   # массив  - - - 
-    
     for i in range(len(res)):
         res[i] = '_'
-    while res.join() != word.join() :
+
+    while ''.join(res) != word:
         print(1)
     else:
         config.result(
-            players.pl1,
-            players.pl2,
-            players.pl3,
+            players['pl1'],
+            players['pl2'],
+            players['pl3'],
             word
-            )
+        )
+
+game()
