@@ -17,6 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let pl__sc2 = document.querySelector('#pl__sc2');
     let pl__sc3 = document.querySelector('#pl__sc3');
 
+    let pl__sc11 = document.querySelector('#pl__sc11');
+    let pl__sc21 = document.querySelector('#pl__sc21');
+    let pl__sc32 = document.querySelector('#pl__sc31');
 
     let baraban = [0,-1,100,120,140,160,180,200,220,240,260,280,300];
 
@@ -195,10 +198,10 @@ document.addEventListener('DOMContentLoaded', () => {
             Ressult__word.innerHTML = word;
             winner__text.innerHTML = `Победил игрок номер ${players_flag % 3 === 0 ? 3 : players_flag % 3}`;
             all__score.innerHTML = `    
-                Количество очков:\n
-                ${players['pl1']['name']} : ${players['pl1']['count']} ,
-                ${players['pl2']['name']} : ${players['pl2']['count']} ,
-                ${players['pl3']['name']} : ${players['pl3']['count']}`; // Fix the typo here
+                Количество очков:\n`
+                pl__sc11.innerHTML = `${players['pl1']['name']} : ${players['pl1']['count']}`
+                pl__sc21.innerHTML = `${players['pl2']['name']} : ${players['pl2']['count']}`
+                pl__sc31.innerHTML = `${players['pl3']['name']} : ${players['pl3']['count']}`
         } else {
             if(isChange){
                 players_flag += 1;
