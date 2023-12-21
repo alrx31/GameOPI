@@ -13,8 +13,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let winner__text = document.querySelector('#winner__text');
     let all__score = document.querySelector('#all__score');
     let polayer = document.querySelector('#polayer');
+    let pl__sc1 = document.querySelector('#pl__sc1');
+    let pl__sc2 = document.querySelector('#pl__sc2');
+    let pl__sc3 = document.querySelector('#pl__sc3');
 
-    let baraban = [0,-1,100,0];
+
+    let baraban = [0,-1,100,120,140,160,180,200,220,240,260,280,300];
 
     let words = datas[1];
     let STBUT = document.querySelector('.start_button');
@@ -64,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let entered_words = ['']
         
         setTimeout(()=>{
-            Switch(players_flag, entered_words, players, result, word);
+            Switch(players_flag, entered_words, players, result, word,true);
         },100) 
     }
 
@@ -89,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.log("number letter", word[Number(input_letter) - 1])
                 }
             } catch {
-                TempText.innerHTML = 'You entered an invalid number';
+                TempText.innerHTML = 'вы ввели неправильное число';
                 setTimeout(() => {
                     TempText.innerHTML = '';
                 }, 1000);
@@ -133,10 +137,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (baraban__value >= 100) {
             players[players_flag % 3 !== 0 ? ('pl' + players_flag % 3) : 'pl3']['count'] += game_flag * baraban__value;
         }
-
+        let isChange = game_flag == 0
         baraban_text.innerHTML = ''
         setTimeout(() => {
-            Switch(players_flag, entered_words, players, result, word);
+            Switch(players_flag, entered_words, players, result, word,isChange);
         }, 50);
     }
 
@@ -149,12 +153,12 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log("baraban", baraban__value)
         polayer.innerHTML = `ход игрока номер ${players_flag % 3 === 0 ? 3 : players_flag % 3}`;
         
-        baraban_text.innerHTML = baraban__value == 0 || baraban__value == -1? 'сектор + на барабане' : baraban__value
+        baraban_text.innerHTML = baraban__value == 0 || baraban__value == -1? 'сектор + на барабане , введите номер буквы' : baraban__value
         input_letter_text.innerHTML = '';
         if (baraban__value == -1) {
             baraban_text.innerHTML = "вы пропускаете ход";
             setTimeout(() => {
-                Switch(players_flag, entered_words, players, result, word);
+                Switch(players_flag, entered_words, players, result, word,false);
             }, 50);
             return;
         }
@@ -174,12 +178,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
 
-    function Switch(players_flag, entered_words, players, result, word) {
+    function Switch(players_flag, entered_words, players, result, word,isChange) {
         TempText.innerHTML = '';
-        checkWin(players, players_flag,entered_words, result, word);
+
+        pl__sc1.innerHTML = `${players['pl1']['name']} : ${players['pl1']['count']}`
+        pl__sc2.innerHTML = `${players['pl2']['name']} : ${players['pl2']['count']}`
+        pl__sc3.innerHTML = `${players['pl3']['name']} : ${players['pl3']['count']}`
+
+        checkWin(players, players_flag,entered_words, result, word,isChange);
     }
 
-    function checkWin(players, players_flag, entered_words, result, word) {
+    function checkWin(players, players_flag, entered_words, result, word,isChange) {
         console.log(result.join('', word));
         if (result.join('') == word) {
             end__game_page.classList.add('active');
@@ -191,8 +200,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 ${players['pl2']['name']} : ${players['pl2']['count']} ,
                 ${players['pl3']['name']} : ${players['pl3']['count']}`; // Fix the typo here
         } else {
-            players_flag += 1;
-    
+            if(isChange){
+                players_flag += 1;
+            }    
             setTimeout(() => {
                 CheckBaraban(players_flag, entered_words, players, result, word);
             }, 50);

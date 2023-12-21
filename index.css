@@ -9,6 +9,9 @@ body {
     color: #FCFCFC;
     overflow: hidden;
 }
+ p{
+    font-family: roboto;
+}
 
 
 .start_page {
@@ -84,9 +87,12 @@ body {
     font-size: 20px;
     color: white;
     font-family: roboto;
-    width: 50px;
+    width: 80px;
     text-transform: uppercase;
     transition: .3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #input_letter:focus{
@@ -94,11 +100,11 @@ body {
 }
 #temp_text {
     font-family: roboto;
-    font-size: 20px;
+    font-size: 40px;
     font-weight: 200;
 }
 #word {
-    font-size: 90px;
+    font-size: 70px;
     font-family: roboto;
     font-weight: 400;
 }
@@ -112,13 +118,21 @@ body {
 #definition {
     font-family: 'roboto';
     font-weight: 600;
-    font-size: 50px;
+    font-size: 60px;
 }
 .game_page.active {
     left: 0;
     opacity: 1;
 }
-
+#baraban_text{
+    font-size: 40px;
+}
+#polayer{
+    position: absolute;
+    left: 5%;
+    bottom: 6%;
+    font-size: 40px;
+}
 .end__game{
     position: absolute;
     opacity:0;
@@ -144,4 +158,19 @@ body {
 .end__game.active{
     top: 0;
     opacity:1;
+}
+
+
+
+#scores{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column nowrap;
+    position: absolute;
+    right: 5%;
+    bottom: 6%;
+
+    font-size: 30px;
+
 }
