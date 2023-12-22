@@ -7,11 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let input_letter_text = document.querySelector('#input_letter_text');
     let baraban_text = document.querySelector('#baraban_text');
     let input_letter_doc = document.querySelector('#input_letter');
-
+    let reset_button = document.querySelector('.reset_button')
     let end__game_page = document.querySelector('.end__game');
     let Ressult__word = document.querySelector('#Result__word');
     let winner__text = document.querySelector('#winner__text');
     let all__score = document.querySelector('#all__score');
+
+
     let polayer = document.querySelector('#polayer');
     let pl__sc1 = document.querySelector('#pl__sc1');
     let pl__sc2 = document.querySelector('#pl__sc2');
@@ -33,6 +35,13 @@ document.addEventListener('DOMContentLoaded', () => {
         GamePage.classList.toggle('active');
         game(words);
     });
+
+    reset_button.addEventListener('click', ()=>{
+        GamePage.classList.toggle('active');
+        end__game_page.classList.remove('active');
+        game(words);
+    })
+
     let currentClickClosure;
     
 
@@ -56,7 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let my_word = words[Math.ceil(Math.random() * (words.length - 1))];
         let word = my_word.split('#')[0].toUpperCase();
-        console.log(word)
         let description = my_word.split('#')[1];
         let result = [];
 
@@ -78,10 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function Turn( players_flag, entered_words, players, baraban__value, result, word) {
         let input_letter = input_letter_doc.value.toUpperCase();
-        console.log("first value 12312323:".toUpperCase(), input_letter)
     
         input_letter_doc.value = '';
-        console.log(baraban__value, baraban__value==0)
         if (baraban__value == 0) {
             try {
                 if (input_letter.trim() === '' || isNaN(input_letter) || Number(input_letter) <= 0 || Number(input_letter) > result.length) {
@@ -92,8 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     return
                 } else {
                     input_letter = word[Number(input_letter) - 1];
-                    console.log("number letter", input_letter)
-                    console.log("number letter", word[Number(input_letter) - 1])
                 }
             } catch {
                 TempText.innerHTML = 'вы ввели неправильное число';
@@ -112,11 +116,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             } else {
                 entered_words.push(input_letter)
-                console.log("push",input_letter)
             }
         }
     
-        console.log("end value", input_letter);
         input_letter_doc.removeEventListener('keypress', currentClickClosure);
         setTimeout(() => {
             OpenLetters(input_letter, players, baraban__value, result, word, players_flag, entered_words);
@@ -149,28 +151,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function CheckBaraban(players_flag, entered_words, players, result, word) {
         Printword.innerHTML = result.join(' ');
-        // console.log(result)
-        console.log("\n\n\n\n",entered_words)
 
         let baraban__value = baraban[Math.ceil(Math.random() * (baraban.length - 1))];
-        console.log("baraban", baraban__value)
+
         polayer.innerHTML = `ход игрока номер ${players_flag % 3 === 0 ? 3 : players_flag % 3}`;
         
-        baraban_text.innerHTML = baraban__value == 0 || baraban__value == -1? 'сектор + на барабане , введите номер буквы' : baraban__value
+        baraban_text.innerHTML = baraban__value == 0 || baraban__value == -1? 'сектор + на барабане , введите номер буквы' : `очков на барабане: ${baraban__value}`
         input_letter_text.innerHTML = '';
+        
         if (baraban__value == -1) {
             baraban_text.innerHTML = "вы пропускаете ход";
             setTimeout(() => {
+                baraban_text.innerHTML = "";
                 Switch(players_flag, entered_words, players, result, word,false);
-            }, 50);
+            }, 1000);
             return;
         }
         input_letter_doc.value = ''
         
-        setTimeout(()=>{
             currentClickClosure = current_click(players_flag, entered_words, players, baraban__value, result, word);
             input_letter_doc.addEventListener('keypress', currentClickClosure);
-        },50)
     }
     function current_click( players_flag, entered_words, players, baraban__value, result, word) {
         return function clicked(e) {
@@ -192,12 +192,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function checkWin(players, players_flag, entered_words, result, word,isChange) {
-        console.log(result.join('', word));
         if (result.join('') == word) {
             end__game_page.classList.add('active');
-            Ressult__word.innerHTML = word;
+            GamePage.classList.toggle('active');
+
+            Ressult__word.innerHTML = `Загаданное слово: ${word}`;
             winner__text.innerHTML = `Победил игрок номер ${players_flag % 3 === 0 ? 3 : players_flag % 3}`;
-            all__score.innerHTML = `    
+            all__score.innerHTML = `  
+                \n
+            
                 Количество очков:\n`
                 pl__sc11.innerHTML = `${players['pl1']['name']} : ${players['pl1']['count']}`
                 pl__sc21.innerHTML = `${players['pl2']['name']} : ${players['pl2']['count']}`
