@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let input_letter_text = document.querySelector('#input_letter_text');
     let baraban_text = document.querySelector('#baraban_text');
     let input_letter_doc = document.querySelector('#input_letter');
+    
+
     let reset_button = document.querySelector('.reset_button')
     let end__game_page = document.querySelector('.end__game');
     let Ressult__word = document.querySelector('#Result__word');
@@ -47,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function game(words) {
 
+    input_letter_doc.focus()
 
         let players = {
             'pl1': {
