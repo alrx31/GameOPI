@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let pl__sc21 = document.querySelector('#pl__sc21');
     let pl__sc32 = document.querySelector('#pl__sc31');
 
-    let baraban = [0,-1,100,120,140,160,180,200,220,240,260,280,300];
+    let baraban = [0,0,0,0,0,0,0,0,0,-1,100,120,140,160,180,200,220,240,260,280,300];
 
     let words = datas[1];
     let STBUT = document.querySelector('.start_button');
