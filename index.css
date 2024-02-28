@@ -1,0 +1,249 @@
+@import url(./obn.css);
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+
+
+body {
+    background-color: #161616;
+    color: #FCFCFC;
+    overflow: hidden;
+}
+ p{
+    font-family: roboto;
+}
+
+
+.start_page {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column nowrap;
+    opacity:1;
+    position: relative;
+    top: 0;
+    left: 0;
+    transition: .3s ease-in;
+
+}
+
+.start_page.close{
+    left: -100%;
+    opacity: 0;
+}
+
+.start_page h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 800;
+    font-size: 60px;
+}
+
+.start_button{
+    width: 200px;  
+    height: 80px;
+    border: 1px solid white;
+    background-color: transparent;
+    color: white;
+    border-radius: 8px ;
+    padding: 16px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'roboto', sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    margin-top: 100px;
+    transition:.3s ease;
+}
+.start_button:active{
+    background-color: blue;
+}
+.start_button:focus{
+    box-shadow: 0 0 10px white,
+    inset 0 0 5px white;
+    
+}
+.start_button:hover{
+    color:#161616;
+    background-color: white;
+    cursor:pointer;
+}
+.reset_button{
+    width: 200px;  
+    height: 80px;
+    border: 1px solid white;
+    background-color: transparent;
+    color: white;
+    border-radius: 8px ;
+    padding: 16px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'roboto', sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    margin-top: 100px;
+    transition:.3s ease;
+}
+.reset_button:active{
+    background-color: blue;
+}
+.reset_button:focus{
+    box-shadow: 0 0 10px white,
+    inset 0 0 5px white;
+    
+}
+.reset_button:hover{
+    color:#161616;
+    background-color: white;
+    cursor:pointer;
+}
+.game_page{
+    position:absolute;
+    left: 100%;
+    top: 0;
+    opacity:0;
+    width: 100vw;
+    height: 80vh;
+    transition: .3s ease-in;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow:column nowrap ;
+}
+.game_page *{
+    margin-top: 60px;
+}
+#input_letter {
+    margin-top: 20px;
+    border: 2px solid White;
+    background-color: transparent;
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 20px;
+    color: white;
+    font-family: roboto;
+    width: 80px;
+    text-transform: uppercase;
+    transition: .3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.game_page.active {
+    left: 0;
+    opacity: 1;
+}
+
+#input_letter:focus{
+    box-shadow: 0 0 5px white,
+    inset 0 0 5px white;
+}
+#temp_text {
+    font-family: roboto;
+    font-size: 40px;
+    font-weight: 200;
+}
+#word {
+    font-size: min(100px, 3vh);
+    font-family: roboto;
+    font-weight: 400;
+}
+
+#input_letter_text {
+    font-family: roboto;
+    font-size: 30px;
+    font-weight: 300;
+}
+
+#definition {
+    font-family: 'roboto';
+    font-weight: 600;
+    font-size: min(30px,3vh);
+    text-align: center;
+}
+
+#baraban_text{
+    font-size: min(40px,2vh);
+}
+#polayer{
+    position: absolute;
+    left: 5%;
+    bottom: 6%;
+    font-size: min(40px,3vh);
+}
+
+
+
+
+.end__game{
+    position: absolute;
+    opacity:0;
+    top: -200%;
+    left: 0;
+    transition:.3s;
+    will-change: position;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(53, 20, 20);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column nowrap;
+
+    font-family: roboto;
+    font-size: 50px;
+    font-weight: 800;
+
+}
+
+.end__game.active{
+    top: 0;
+    opacity:1;
+}
+
+
+
+#scores{
+    position: absolute;
+    right: 5%;
+    bottom: 6%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column nowrap;
+    
+
+    font-size: min(30px,2vh);
+
+}
+
+#scores p{
+    margin: 20px;
+}
+
+
+@media(max-width:768px){
+    #scores {
+        bottom: 5px;
+        right: 50%;
+        transform: translateX(50%);
+    }
+    #scores P{
+        margin: 10px;
+    }
+
+    #polayer{
+        z-index: -1;
+        top: 5%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
